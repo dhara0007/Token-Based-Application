@@ -1,0 +1,48 @@
+Create Database TokenAuthenticationDB
+Go
+
+
+Create table Users
+(
+     ID int primary key identity,
+     FirstName nvarchar(50),
+     LastName nvarchar(50),
+     Gender nvarchar(50),
+     RoleID int
+)
+Go
+
+
+Create table Roles
+(
+     ID int primary key identity,
+     Role nvarchar(50)   
+)
+Go
+
+Insert into Users values ('test', 'ftest', 'Male', 1)
+Insert into Users values ('test1', 'ntest', 'Male', 2)
+Insert into Users values ('test2', 'btest', 'Female', 1)
+Insert into Users values ('test3', 'ctest', 'Female', 2)
+Insert into Employees values ('test4', 'dtest', 'Male', 3)
+Go
+Insert into Roles values ('Developer')
+Insert into Roles values ('Manager')
+Insert into Roles values ('Admin')
+
+Go
+
+CREATE TABLE UserMaster
+(
+  UserID INT PRIMARY KEY,
+  UserName VARCHAR(50),
+  UserPassword VARCHAR(50),
+  UserRoles VARCHAR(500),
+  UserEmailID VARCHAR(100),
+)
+GO
+INSERT INTO UserMaster VALUES(101, ‘test’, '123456', 'Admin', ‘test@g.com')
+INSERT INTO UserMaster VALUES(102, 'test1', 'abcdef', 'User', ‘test1@g.com')
+INSERT INTO UserMaster VALUES(103, ’test2',’123pqr', 'SuperAdmin', 'test2@g.com')
+INSERT INTO UserMaster VALUES(104,’test3’, 'abc123', 'Admin, User', 'test4@g.com')
+GO
