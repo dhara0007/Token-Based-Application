@@ -1,14 +1,23 @@
 Create Database TokenAuthenticationDB
 Go
 
+CREATE TABLE UserMaster
+(
+  UserID INT PRIMARY KEY identity,
+  UserName VARCHAR(50),
+  UserPassword VARCHAR(50),
+  UserEmail VARCHAR(100),
+    UserRoleID int,
+)
+Go
 
 Create table Users
 (
      ID int primary key identity,
      FirstName nvarchar(50),
      LastName nvarchar(50),
-     Gender nvarchar(50),
-     RoleID int
+     GenderID int
+
 )
 Go
 
@@ -20,29 +29,33 @@ Create table Roles
 )
 Go
 
-Insert into Users values ('test', 'ftest', 'Male', 1)
-Insert into Users values ('test1', 'ntest', 'Male', 2)
-Insert into Users values ('test2', 'btest', 'Female', 1)
-Insert into Users values ('test3', 'ctest', 'Female', 2)
-Insert into Employees values ('test4', 'dtest', 'Male', 3)
+Create table Genders
+(
+     ID int primary key identity,
+     Gender nvarchar(50)   
+)
+
+GO
+INSERT INTO UserMaster VALUES(‘test’, '123456', ‘test@g.com',1)
+INSERT INTO UserMaster VALUES('test1', 'abcdef', ‘test1@g.com',2)
+INSERT INTO UserMaster VALUES(’test2',’123pqr', 'test2@g.com',1)
+INSERT INTO UserMaster VALUES(’test3’, 'abc123', 'test4@g.com',1)
+GO
+
+Insert into Users values ('test', 'ftest',  1)
+Insert into Users values ('test1', 'ntest',  2)
+Insert into Users values ('test2', 'btest',  1)
+Insert into Users values ('test3', 'ctest',  2)
+Insert into Employees values ('test4', 'dtest', 3)
 Go
 Insert into Roles values ('Developer')
 Insert into Roles values ('Manager')
 Insert into Roles values ('Admin')
 
 Go
+Insert into Genders values ('Male')
+Insert into Genders values ('Female')
+Insert into Genders values ('other')
 
-CREATE TABLE UserMaster
-(
-  UserID INT PRIMARY KEY,
-  UserName VARCHAR(50),
-  UserPassword VARCHAR(50),
-  UserRoles VARCHAR(500),
-  UserEmailID VARCHAR(100),
-)
-GO
-INSERT INTO UserMaster VALUES(101, ‘test’, '123456', 'Admin', ‘test@g.com')
-INSERT INTO UserMaster VALUES(102, 'test1', 'abcdef', 'User', ‘test1@g.com')
-INSERT INTO UserMaster VALUES(103, ’test2',’123pqr', 'SuperAdmin', 'test2@g.com')
-INSERT INTO UserMaster VALUES(104,’test3’, 'abc123', 'Admin, User', 'test4@g.com')
-GO
+
+
