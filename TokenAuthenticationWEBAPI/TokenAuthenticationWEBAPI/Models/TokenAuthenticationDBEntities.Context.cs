@@ -25,6 +25,7 @@ namespace TokenAuthenticationWEBAPI.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<User> Users { get; set; }

@@ -140,49 +140,52 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
-    <Content Include="Models\TokenAuthenticationModel.Context.tt">
+    <Content Include="Models\TokenAuthenticationDBEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TokenAuthenticationModel.Context.cs</LastGenOutput>
-      <DependentUpon>TokenAuthenticationModel.edmx</DependentUpon>
+      <DependentUpon>TokenAuthenticationDBEntities.edmx</DependentUpon>
+      <LastGenOutput>TokenAuthenticationDBEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\TokenAuthenticationModel.tt">
+    <Content Include="Models\TokenAuthenticationDBEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TokenAuthenticationModel.edmx</DependentUpon>
-      <LastGenOutput>TokenAuthenticationModel.cs</LastGenOutput>
+      <DependentUpon>TokenAuthenticationDBEntities.edmx</DependentUpon>
+      <LastGenOutput>TokenAuthenticationDBEntities.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Gender.cs">
+      <DependentUpon>TokenAuthenticationDBEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\MyAuthorizationServerProvider.cs" />
     <Compile Include="Models\Role.cs">
-      <DependentUpon>TokenAuthenticationModel.tt</DependentUpon>
+      <DependentUpon>TokenAuthenticationDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TokenAuthenticationModel.Context.cs">
+    <Compile Include="Models\TokenAuthenticationDBEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TokenAuthenticationModel.Context.tt</DependentUpon>
+      <DependentUpon>TokenAuthenticationDBEntities.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TokenAuthenticationModel.cs">
+    <Compile Include="Models\TokenAuthenticationDBEntities.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TokenAuthenticationModel.tt</DependentUpon>
+      <DependentUpon>TokenAuthenticationDBEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TokenAuthenticationModel.Designer.cs">
+    <Compile Include="Models\TokenAuthenticationDBEntities.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TokenAuthenticationModel.edmx</DependentUpon>
+      <DependentUpon>TokenAuthenticationDBEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>TokenAuthenticationModel.tt</DependentUpon>
+      <DependentUpon>TokenAuthenticationDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserMaster.cs">
-      <DependentUpon>TokenAuthenticationModel.tt</DependentUpon>
+      <DependentUpon>TokenAuthenticationDBEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserMasterRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -190,12 +193,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <EntityDeploy Include="Models\TokenAuthenticationModel.edmx">
+    <EntityDeploy Include="Models\TokenAuthenticationDBEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TokenAuthenticationModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>TokenAuthenticationDBEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\TokenAuthenticationModel.edmx.diagram">
-      <DependentUpon>TokenAuthenticationModel.edmx</DependentUpon>
+    <Content Include="Models\TokenAuthenticationDBEntities.edmx.diagram">
+      <DependentUpon>TokenAuthenticationDBEntities.edmx</DependentUpon>
     </Content>
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
