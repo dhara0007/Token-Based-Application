@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="TokenAuthenticationDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Genders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Roles">
           <Key>
             <PropertyRef Name="ID" />
@@ -16,11 +23,11 @@
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="50" />
           <Property Name="UserPassword" Type="varchar" MaxLength="50" />
-          <Property Name="UserRoles" Type="varchar" MaxLength="500" />
-          <Property Name="UserEmailID" Type="varchar" MaxLength="100" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="100" />
+          <Property Name="UserRoleID" Type="int" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -29,10 +36,10 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
-          <Property Name="RoleID" Type="int" />
+          <Property Name="GenderID" Type="int" />
         </EntityType>
         <EntityContainer Name="TokenAuthenticationDBModelStoreContainer">
+          <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
@@ -42,6 +49,13 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TokenAuthenticationDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Gender1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="ID" />
@@ -53,11 +67,11 @@
           <Key>
             <PropertyRef Name="UserID" />
           </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UserRoles" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="UserEmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UserRoleID" Type="Int32" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -66,10 +80,10 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RoleID" Type="Int32" />
+          <Property Name="GenderID" Type="Int32" />
         </EntityType>
         <EntityContainer Name="TokenAuthenticationDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Genders" EntityType="Self.Gender" />
           <EntitySet Name="Roles" EntityType="Self.Role" />
           <EntitySet Name="UserMasters" EntityType="Self.UserMaster" />
           <EntitySet Name="Users" EntityType="Self.User" />
@@ -80,6 +94,14 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="TokenAuthenticationDBModelStoreContainer" CdmEntityContainer="TokenAuthenticationDBEntities">
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="TokenAuthenticationDBModel.Gender">
+              <MappingFragment StoreEntitySet="Genders">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Gender1" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="TokenAuthenticationDBModel.Role">
               <MappingFragment StoreEntitySet="Roles">
@@ -94,8 +116,8 @@
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-                <ScalarProperty Name="UserRoles" ColumnName="UserRoles" />
-                <ScalarProperty Name="UserEmailID" ColumnName="UserEmailID" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserRoleID" ColumnName="UserRoleID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -105,8 +127,7 @@
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

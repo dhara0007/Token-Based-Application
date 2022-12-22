@@ -28,9 +28,9 @@ namespace TokenAuthenticationWEBAPI.Models
                     return;
                 }
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-                identity.AddClaim(new Claim(ClaimTypes.Role, user.UserRoles));
+                identity.AddClaim(new Claim(ClaimTypes.Role, user.UserRoleID.ToString()));
                 identity.AddClaim(new Claim(ClaimTypes.Name, user.UserName));
-                identity.AddClaim(new Claim("Email", user.UserEmailID));
+                identity.AddClaim(new Claim("Email", user.UserEmail));
                 context.Validated(identity);
             }
         }
